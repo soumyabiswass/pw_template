@@ -24,7 +24,7 @@ int main() {
     pw::spin_delay::WaitMillis(1000);
     PW_LOG_INFO("Blink Low!");
     pw::board_led::TurnOff();
-    pw::spin_delay::WaitMillis(7000);
+    pw::spin_delay::WaitMillis(1000);
   }
 
   return 0;
