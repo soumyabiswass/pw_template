@@ -1,0 +1,108 @@
+# Copyright 2020 The Pigweed Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License. You may obtain a copy of
+# the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
+import("//build_overrides/pigweed.gni")
+
+import("$dir_pw_build/python.gni")
+import("$dir_pw_build/python_dist.gni")
+import("$dir_pw_build/python_venv.gni")
+
+# NOTE: All the `deps` listed in `//BUILD.gn` must either be instantiated with a
+# toolchain, e.g. `":my_host_target(//path/to/host:toolchain)"`, or listed
+# within an `if (current_toolchain != default_toolchain)` statement.
+# It also prevents the default toolchain from parsing any unnecessary BUILD.gn
+# files.
+
+# Lists all the targets build by default with e.g. `ninja -C out`.
+group("default") {
+  deps = [
+    ":python.lint",
+    ":python.tests",
+    ":app",
+  ]
+}
+
+# stm32f429i_disc1 specific targets
+group("stm32f429i_disc1") {
+  _default_toolchain = "//targets/stm32f429i_disc1:stm32f429i_disc1_debug"
+  deps = [
+    ":app(${_default_toolchain})",
+  ]
+}
+
+# This group is built during bootstrap to setup the interactive Python
+# environment.
+pw_python_group("python") {
+  python_deps = [
+    # Generate and pip install _all_python_packages
+    ":pip_install_sample_project_tools",
+  ]
+}
+
+# In-tree Python packages
+_sample_project_python_packages = [ "//tools:tools" ]
+
+# Pigweed Python packages to include
+_pigweed_python_packages = [
+  "$dir_pw_env_setup:core_pigweed_python_packages",
+  "$dir_pigweed/targets/lm3s6965evb_qemu/py",
+  "$dir_pigweed/targets/stm32f429i_disc1/py",
+]
+
+_all_python_packages =
+    _sample_project_python_packages + _pigweed_python_packages
+
+# The default venv for Python actions in GN
+# Set this gn arg in a declare_args block in this file 'BUILD.gn' or in '.gn' to
+# use this venv.
+#
+#   pw_build_PYTHON_BUILD_VENV = "//:sample_project_build_venv"
+#
+pw_python_venv("sample_project_build_venv") {
+  path = "$root_build_dir/python-venv"
+  constraints = pw_build_PIP_CONSTRAINTS
+  requirements = pw_build_PIP_REQUIREMENTS
+
+  # Ensure all third party Python dependencies are installed into this venv.
+  # This works by checking the setup.cfg files for all packages listed here and
+  # installing the packages listed in the [options].install_requires field.
+  source_packages = _all_python_packages
+}
+
+# This template collects all python packages and their dependencies into a
+# single super Python package for installation into the bootstrapped virtual
+# environment.
+pw_create_python_source_tree(
+    "generate_sample_project_tools_python_distribution") {
+  packages = _all_python_packages
+  generate_setup_cfg = {
+    name = "sample-project-tools"
+    version = "0.0.1"
+    append_date_to_version = true
+    include_default_pyproject_file = true
+  }
+}
+
+# Install the sample-project-tools super Python package into the bootstrapped
+# Python venv.
+pw_internal_pip_install("pip_install_sample_project_tools") {
+  packages = [ ":generate_sample_project_tools_python_distribution" ]
+}
+
+group("app") {
+  deps = [
+    "//src:blinky(//targets/stm32f429i_disc1:stm32f429i_disc1_debug)",
+  ]
+
+}
