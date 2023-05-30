@@ -56,7 +56,6 @@ _sample_project_python_packages = [ "//tools:tools" ]
 # Pigweed Python packages to include
 _pigweed_python_packages = [
   "$dir_pw_env_setup:core_pigweed_python_packages",
-  "$dir_pigweed/targets/lm3s6965evb_qemu/py",
   "$dir_pigweed/targets/stm32f429i_disc1/py",
 ]
 
