@@ -23,8 +23,8 @@ pw_python_package("tools") {
     "setup.py",
   ]
   sources = [
-    "sample_project_tools/__init__.py",
-    "sample_project_tools/presubmit_checks.py",
+    "project_tools/__init__.py",
+    "project_tools/presubmit_checks.py",
   ]
   python_deps = [
     "$dir_pw_cli/py",

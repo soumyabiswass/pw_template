@@ -46,12 +46,12 @@ group("stm32f429i_disc1") {
 pw_python_group("python") {
   python_deps = [
     # Generate and pip install _all_python_packages
-    ":pip_install_sample_project_tools",
+    ":pip_install_project_tools",
   ]
 }
 
 # In-tree Python packages
-_sample_project_python_packages = [ "//tools:tools" ]
+_project_python_packages = [ "//tools:tools" ]
 
 # Pigweed Python packages to include
 _pigweed_python_packages = [
@@ -60,15 +60,15 @@ _pigweed_python_packages = [
 ]
 
 _all_python_packages =
-    _sample_project_python_packages + _pigweed_python_packages
+    _project_python_packages + _pigweed_python_packages
 
 # The default venv for Python actions in GN
 # Set this gn arg in a declare_args block in this file 'BUILD.gn' or in '.gn' to
 # use this venv.
 #
-#   pw_build_PYTHON_BUILD_VENV = "//:sample_project_build_venv"
+#   pw_build_PYTHON_BUILD_VENV = "//:project_build_venv"
 #
-pw_python_venv("sample_project_build_venv") {
+pw_python_venv("project_build_venv") {
   path = "$root_build_dir/python-venv"
   constraints = pw_build_PIP_CONSTRAINTS
   requirements = pw_build_PIP_REQUIREMENTS
@@ -83,20 +83,20 @@ pw_python_venv("sample_project_build_venv") {
 # single super Python package for installation into the bootstrapped virtual
 # environment.
 pw_create_python_source_tree(
-    "generate_sample_project_tools_python_distribution") {
+    "generate_project_tools_python_distribution") {
   packages = _all_python_packages
   generate_setup_cfg = {
-    name = "sample-project-tools"
+    name = "project-tools"
     version = "0.0.1"
     append_date_to_version = true
     include_default_pyproject_file = true
   }
 }
 
-# Install the sample-project-tools super Python package into the bootstrapped
+# Install the project-tools super Python package into the bootstrapped
 # Python venv.
-pw_internal_pip_install("pip_install_sample_project_tools") {
-  packages = [ ":generate_sample_project_tools_python_distribution" ]
+pw_internal_pip_install("pip_install_project_tools") {
+  packages = [ ":generate_project_tools_python_distribution" ]
 }
 
 group("app") {

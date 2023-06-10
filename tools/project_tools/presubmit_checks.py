@@ -51,7 +51,7 @@ try:
     PROJECT_ROOT = Path(os.environ['SAMPLE_PROJECT_ROOT'])
 except KeyError:
     print(
-        'ERROR: The presubmit checks must be run in the sample project\'s root'
+        'ERROR: The presubmit checks must be run in the project\'s root'
         ' directory',
         file=sys.stderr,
     )
@@ -143,7 +143,7 @@ def run(install: bool, exclude: list, **presubmit_args) -> int:
             [
                 'python',
                 '-m',
-                'sample_project_tools.presubmit_checks',
+                'project_tools.presubmit_checks',
                 '--base',
                 'origin/main..HEAD',
                 '--program',
