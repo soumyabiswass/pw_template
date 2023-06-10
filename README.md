@@ -5,12 +5,18 @@ A minimal starter repo for Pigweed projects.
 ## Setup
 
 1. `git submodule update --init --recursive` to make sure all deps install?
+
 1. `pw package install pico_sdk`
+
 1. `gn args out` and then copy-paste:
 
        dir_pw_third_party_nanopb = "//third_party/nanopb"
        dir_pw_third_party_freertos = "//third_party/freertos"
        PICO_SRC_DIR = "//environment/packages/pico_sdk"
+
+1. Hold BOOTSEL, press Reset button (on extension board), mount the Pico as USB Mass Storage, then:
+
+       cp out/rp2040_pw_system.debug/obj/src/pico.uf2 /media/kayce/RPI-RP2/
 
 ## Notes
 
