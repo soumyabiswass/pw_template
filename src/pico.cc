@@ -13,22 +13,22 @@
 // the License.
 
 #include "pico/stdlib.h"
-#include "pw_system/rpc_server.h"
 
 namespace pw::system {
 
-// This will run once after pw::system::Init() completes. This callback must
-// return or it will block the work queue.
 void UserAppInit() {
     const uint LED_PIN = PICO_DEFAULT_LED_PIN;
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
-    while (true) {
-        gpio_put(LED_PIN, 1);
-        sleep_ms(250);
-        gpio_put(LED_PIN, 0);
-        sleep_ms(250);
-    }
+    gpio_put(LED_PIN, 1);
+    sleep_ms(2000);
+    gpio_put(LED_PIN, 0);
+    sleep_ms(2000);
+    gpio_put(LED_PIN, 1);
+    sleep_ms(2000);
+    gpio_put(LED_PIN, 0);
+    sleep_ms(2000);
+    gpio_put(LED_PIN, 1);
 }
 
 }  // namespace pw::system
