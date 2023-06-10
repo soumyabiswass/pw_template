@@ -1,3 +1,7 @@
+# Debugging
+pw_console-logs.txt
+pw_console-device-logs.txt
+
 # Build
 out/
 .presubmit/
