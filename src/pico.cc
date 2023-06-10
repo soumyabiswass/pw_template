@@ -13,6 +13,7 @@
 // the License.
 
 #include "pico/stdlib.h"
+#include "pw_system/rpc_server.h"
 
 namespace pw::system {
 
