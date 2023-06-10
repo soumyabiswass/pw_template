@@ -1,4 +1,4 @@
-// Copyright 2020 The Pigweed Authors
+// Copyright 2021 The Pigweed Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not
 // use this file except in compliance with the License. You may obtain a copy of
@@ -11,12 +11,13 @@
 // WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 // License for the specific language governing permissions and limitations under
 // the License.
-#pragma once
 
-#include <cstddef>
+namespace pw::system {
 
-namespace pw::spin_delay {
+// This will run once after pw::system::Init() completes. This callback must
+// return or it will block the work queue.
+void UserAppInit() {
+    // Do stuff.
+}
 
-void WaitMillis(size_t delay_ms);
-
-}  // namespace pw::spin_delay
+}  // namespace pw::system

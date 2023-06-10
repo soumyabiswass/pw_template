@@ -13,18 +13,17 @@
 # the License.
 
 import("//build_overrides/pigweed.gni")
-
 import("$dir_pw_build/target_types.gni")
 
 group("all") {
-  deps = [ ":blinky" ]
+    deps = [
+        ":pico",
+    ]
 }
 
-pw_executable("blinky") {
-  sources = [ "main.cc" ]
-  deps = [
-    "//src/pw_board_led",
-    "//src/pw_spin_delay",
-    dir_pw_log,
-  ]
+pw_executable("pico") {
+    sources = [ "pico.cc" ]
+    deps = [
+        "//third_party/pigweed/third_party/pico_sdk/src/common/pico_stdlib",
+    ]
 }

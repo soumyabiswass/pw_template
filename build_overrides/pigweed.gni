@@ -13,7 +13,6 @@
 # the License.
 
 declare_args() {
-  # Location of the Pigweed repository.
   dir_pigweed = "//third_party/pigweed/"
 }
 
