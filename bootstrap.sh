@@ -63,21 +63,21 @@ fi
 # YOUR_PROJECT_ROOT. Please also set PW_PROJECT_ROOT and PW_ROOT before
 # invoking pw_bootstrap or pw_activate.
 ######### BEGIN PROJECT-SPECIFIC CODE #########
-SAMPLE_PROJECT_ROOT="$(_bootstrap_abspath "$(dirname "$_BOOTSTRAP_PATH")")"
-export SAMPLE_PROJECT_ROOT
-PW_PROJECT_ROOT="$SAMPLE_PROJECT_ROOT"
-PW_ROOT="$SAMPLE_PROJECT_ROOT/third_party/pigweed"
+PROJECT_ROOT="$(_bootstrap_abspath "$(dirname "$_BOOTSTRAP_PATH")")"
+export PROJECT_ROOT
+PW_PROJECT_ROOT="$PROJECT_ROOT"
+PW_ROOT="$PROJECT_ROOT/third_party/pigweed"
 
 # Set your project's banner and color.
-export PW_BRANDING_BANNER="$SAMPLE_PROJECT_ROOT/banner.txt"
+export PW_BRANDING_BANNER="$PROJECT_ROOT/banner.txt"
 export PW_BRANDING_BANNER_COLOR=magenta
 
-sample_project_banner() {
+project_banner() {
   cat "$PW_BRANDING_BANNER"
   echo
 }
 
-PW_BANNER_FUNC="sample_project_banner"
+PW_BANNER_FUNC="project_banner"
 ########## END PROJECT-SPECIFIC CODE ##########
 export PW_BANNER_FUNC
 export PW_PROJECT_ROOT
