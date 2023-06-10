@@ -22,5 +22,5 @@ default_args = {
   pw_build_USE_NEW_PYTHON_BUILD = true
 
   # Default gn build virtualenv target.
-  pw_build_PYTHON_BUILD_VENV = "//:sample_project_build_venv"
+  pw_build_PYTHON_BUILD_VENV = "//:project_build_venv"
 }
