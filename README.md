@@ -23,6 +23,13 @@ A minimal starter repo for Pigweed projects.
 https://pigweed.dev/pw_system/#target-bringup should link to the exact
 stm32cube source code file
 
+RPC worked!
+
+```
+pw-system-console -d /dev/ttyACM0 -b 115200 \
+        --proto-globs third_party/pigweed/pw_rpc/echo.proto
+```
+
 ## Guidelines
 
 * Minimal
