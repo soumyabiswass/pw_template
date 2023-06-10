@@ -48,7 +48,7 @@ _LOG = logging.getLogger(__name__)
 
 # Set up variables for key project paths.
 try:
-    PROJECT_ROOT = Path(os.environ['SAMPLE_PROJECT_ROOT'])
+    PROJECT_ROOT = Path(os.environ['PROJECT_ROOT'])
 except KeyError:
     print(
         'ERROR: The presubmit checks must be run in the project\'s root'

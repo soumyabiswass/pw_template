@@ -66,9 +66,12 @@ _all_python_packages =
 # Set this gn arg in a declare_args block in this file 'BUILD.gn' or in '.gn' to
 # use this venv.
 #
-#   pw_build_PYTHON_BUILD_VENV = "//:project_build_venv"
+#   pw_build_PYTHON_BUILD_VENV = "//:sample_project_build_venv"
 #
-pw_python_venv("project_build_venv") {
+# TODO: I tried to rename this to just "project_build_venv" but it fails.
+# It seems like it's somehow hardcoded to expect "sample" but I can't figure
+# out where or how.
+pw_python_venv("sample_project_build_venv") {
   path = "$root_build_dir/python-venv"
   constraints = pw_build_PIP_CONSTRAINTS
   requirements = pw_build_PIP_REQUIREMENTS

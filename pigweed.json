@@ -3,7 +3,7 @@
     "pw_cli": {
       "plugins": {
         "presubmit": {
-          "module": "sample_project_tools.presubmit_checks",
+          "module": "project_tools.presubmit_checks",
           "function": "main"
         },
         "heap-viewer": {
@@ -15,7 +15,7 @@
           "function": "main"
         },
         "find-files": {
-          "module": "sample_project_tools.find_files",
+          "module": "project_tools.find_files",
           "function": "main"
         },
         "package": {
@@ -30,7 +30,7 @@
       }
     },
     "pw_env_setup": {
-      "root_variable": "SAMPLE_PROJECT_ROOT",
+      "root_variable": "PROJECT_ROOT",
       "cipd_package_files": [
         "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/default.json",
         "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/kythe.json"
