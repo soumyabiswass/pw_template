@@ -17,14 +17,14 @@ import("$dir_pw_build/target_types.gni")
 
 group("all") {
     deps = [
-        ":pico",
+        ":app",
     ]
 }
 
-pw_executable("pico") {
-    sources = [ "pico.cc" ]
+pw_executable("app") {
+    sources = [ "main.cc" ]
     deps = [
-        "//third_party/pigweed/third_party/pico_sdk/src/common/pico_stdlib",
+        # "//third_party/pigweed/third_party/pico_sdk/src/common/pico_stdlib",
         dir_pw_log,
     ]
 }
