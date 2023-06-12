@@ -61,7 +61,7 @@ pw_python_venv("project_build_venv") {
 }
 
 pw_create_python_source_tree("generate_project_tools_python_distribution") {
-  packages = _all_python_packages
+  packages = _python_packages
   generate_setup_cfg = {
     name = "project-tools"
     version = "0.0.1"
