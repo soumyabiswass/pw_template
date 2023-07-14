@@ -6,13 +6,11 @@ A minimal starter repo for Pigweed projects.
 
 1. `git submodule update --init --recursive` to make sure all deps install?
 
+1. `. bootstrap.sh`
+
 1. `pw package install pico_sdk`
 
-1. `gn args out` and then copy-paste:
-
-       dir_pw_third_party_nanopb = "//third_party/nanopb"
-       dir_pw_third_party_freertos = "//third_party/freertos"
-       PICO_SRC_DIR = "//environment/packages/pico_sdk"
+1. `gn gen out && ninja -C out`
 
 1. Hold BOOTSEL, press Reset button (on extension board), mount the Pico as USB Mass Storage, then:
 
