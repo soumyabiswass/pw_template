@@ -17,9 +17,10 @@
 namespace pw::system {
 
 void UserAppInit() {
-    while (true) {
-        PW_LOG_INFO("Hello, Pigweed!");
-    }
+
+    // TODO: This log statement is lost on the device, but shows up on the
+    // host_device_simulator.
+    PW_LOG_INFO("Hello, Pigweed!");
 }
 
 }  // namespace pw::system

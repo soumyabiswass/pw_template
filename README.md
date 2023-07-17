@@ -14,7 +14,7 @@ A minimal starter repo for Pigweed projects.
 
 1. Hold BOOTSEL, press Reset button (on extension board), mount the Pico as USB Mass Storage, then:
 
-       cp out/rp2040_pw_system.debug/obj/src/pico.uf2 /media/kayce/RPI-RP2/
+       cp out/rp2040_pw_system.debug/obj/src/app.uf2 /media/kayce/RPI-RP2/
 
 ## Notes
 
